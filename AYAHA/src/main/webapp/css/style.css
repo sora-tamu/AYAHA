@@ -1,0 +1,394 @@
+/* --- ベース：標準的な視覚バランス --- */
+body {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 650px; /* 横幅を少し絞って、視線の移動距離を最適化 */
+    margin: 80px auto;
+    padding: 0 30px;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* --- 見出し：デカすぎず、かつ埋もれないサイズ --- */
+h1 {
+    font-size: 20px; /* 32pxから20pxへ縮小。周りと調和させます */
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- メモ表示：背景色を少し抑えて馴染ませる --- */
+.memo-display {
+    background-color: #fcfcfc;
+    border: 1px solid #efefef;
+    border-radius: 12px;
+    padding: 25px;
+    font-size: 15px; /* 標準的な読みやすいサイズ */
+    color: #444;
+    line-height: 1.7;
+    margin: 30px 0;
+}
+
+/* --- ボタン：文字サイズを下げ、余白で「押しやすさ」を出す --- */
+.btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px; /* 縦の厚みを少し抑える */
+    margin-bottom: 12px;
+    font-size: 14px; /* 16pxから14pxへ。これが一番馴染むサイズです */
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px; /* 角丸を少し控えめに */
+    border: 1px solid #1a1a1a;
+    background: #1a1a1a;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #1a1a1a;
+    transform: translateY(-2px); /* 浮き上がる量も控えめに */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* --- ログアウトなどの補助リンク --- */
+.logout-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.logout-link:hover {
+    color: #1a1a1a;
+}
+
+/* --- アニメーション --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* --- 検索フォームのバランス調整 --- */
+form[action="SearchServlet"] {
+    margin-bottom: 40px !important; /* 下のリストとの間隔を広く */
+}
+
+form[action="SearchServlet"] input[type="text"] {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px; /* 大きすぎない標準サイズ */
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+form[action="SearchServlet"] input[type="text"]:focus {
+    border-color: #1a1a1a;
+}
+
+/* 検索ボタンを小さくして横並びのバランスを整える */
+form[action="SearchServlet"] .btn-primary {
+    padding: 10px 24px !important;
+    font-size: 13px !important;
+    margin: 0 !important;
+    width: auto !important;
+}
+
+/* --- 検索結果リストの洗練 --- */
+.result-list > div {
+    border-bottom: 1px solid #f2f2f2 !important; /* 線をさらに薄く */
+    padding: 24px 0 !important; /* 上下の余白をゆったりと */
+}
+
+/* 問題タイトル */
+.result-list strong {
+    font-size: 16px; /* 15px〜16pxが最も馴染みます */
+    font-weight: 600;
+    color: #1a1a1a;
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+/* クリア率のテキスト */
+.result-list small {
+    font-size: 11px; /* 補助情報はあえて小さく */
+    letter-spacing: 0.02em;
+    color: #888 !important;
+}
+
+/* お気に入りボタン（リンク） */
+.result-list a[href*="BookmarkServlet"] {
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 6px;
+    transition: opacity 0.2s;
+}
+
+/* 「解く」ボタンの調整（デカすぎ防止） */
+.result-list .btn-success {
+    width: auto !important;
+    min-width: 80px;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+    border-radius: 6px !important;
+    margin: 0 !important;
+    background-color: #1a1a1a !important; /* 周りと合わせて黒基調に */
+    border: none !important;
+}
+
+.result-list .btn-success:hover {
+    background-color: #444 !important;
+    transform: translateY(-2px);
+}
+
+/* 該当なしのメッセージ */
+.result-list p {
+    font-size: 14px;
+    color: #999;
+    margin-top: 60px;
+}
+/* --- 新規作成画面（Create New Question）の微調整 --- */
+
+/* タイトル：大きすぎたのを20px前後に抑制 */
+.container h1 {
+    font-size: 20px !important;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px !important;
+    border-bottom: 1px solid #eee !important;
+}
+
+/* フォームグループの間隔 */
+.form-group {
+    margin-bottom: 28px !important;
+}
+
+/* ラベル：11px前後に固定して情報の主従をつける */
+.form-group label {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: #999 !important;
+    letter-spacing: 0.1em !important;
+    margin-bottom: 8px !important;
+    text-transform: uppercase;
+}
+
+/* 入力欄：15pxが最も馴染むサイズです */
+.input-minimal {
+    font-size: 15px !important;
+    padding: 10px 0 !important;
+    color: #1a1a1a !important;
+    border-bottom: 1px solid #efefef !important;
+}
+
+.input-minimal::placeholder {
+    color: #ccc;
+    font-size: 13px;
+}
+
+.input-minimal:focus {
+    border-bottom: 1px solid #1a1a1a !important;
+}
+
+/* セレクトボックスの調整 */
+select.input-minimal {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23ccc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right center;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 20px;
+}
+
+/* 間違い選択肢エリア：背景を少し馴染ませる */
+#choicesInputArea {
+    background-color: #f9f9fb !important;
+    border: none !important;
+    margin-bottom: 30px !important;
+}
+
+#choicesInputArea p {
+    font-size: 11px !important;
+    font-weight: 600;
+    color: #bbb !important;
+}
+
+/* ボタンの強調しすぎを抑制 */
+.container .btn {
+    font-size: 14px !important;
+    padding: 16px !important;
+    border-radius: 8px !important;
+    background-color: #1a1a1a !important;
+    border: none !important;
+    margin-top: 20px;
+}
+
+/* キャンセルリンク */
+.logout-link {
+    font-size: 12px !important;
+    color: #999 !important;
+    text-decoration: none;
+}
+/* --- アプリ全体のボタンデザインを統一 --- */
+.btn, 
+button[type="submit"], 
+input[type="submit"],
+.btn-success,
+.btn-primary,
+.btn-warning {
+    /* 1. 形状の統一 */
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    
+    /* 2. サイズの調整（大きすぎず、周りと馴染むサイズ） */
+    padding: 16px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    
+    /* 3. 配色の統一（黒基調のモダンデザイン） */
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    
+    /* 4. アニメーション */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* ホバー時の挙動も統一 */
+.btn:hover, 
+button[type="submit"]:hover,
+.btn-success:hover {
+    background-color: #444 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 検索画面などの「横並び」ボタンだけは幅を自動にする例外処理 */
+.search-form-container .search-action-btn,
+.result-list .btn-open-small {
+    width: auto !important;
+    display: inline-block !important;
+    padding: 10px 25px !important;
+}
+/* --- フォーム全体のレイアウトを縦並びに強制 --- */
+.form-group {
+    display: block !important; /* 横並びを防ぐ */
+    margin-bottom: 30px !important;
+    text-align: left !important;
+    width: 100% !important;
+}
+
+/* ラベルを独立した一行にする */
+.form-group label {
+    display: block !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #999 !important;
+    letter-spacing: 0.1em !important;
+    margin-bottom: 10px !important;
+    text-transform: uppercase;
+}
+
+/* 入力欄：幅をコンテナいっぱいに広げる */
+.input-minimal {
+    display: block !important;
+    width: 100% !important; /* 横幅いっぱい */
+    box-sizing: border-box !important;
+    padding: 12px 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #eee !important;
+    font-size: 15px !important;
+    background: transparent !important;
+    border-radius: 0 !important; /* 下線スタイルなので角丸は不要 */
+    outline: none !important;
+}
+
+/* フォーカス時に下線を黒くする */
+.input-minimal:focus {
+    border-bottom: 1px solid #1a1a1a !important;
+}
+
+/* テキストエリアの高さ調整 */
+textarea.input-minimal {
+    min-height: 80px !important;
+    resize: none !important;
+}
+
+/* セレクトボックスも幅を統一 */
+select.input-minimal {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+/* --- フォーム内の文字をクッキリさせる --- */
+
+/* 1. ラベル（Title / タイトル など） */
+.form-group label {
+    display: block !important;
+    font-size: 12px !important; /* 少しだけサイズアップ */
+    font-weight: 800 !important; /* 極太にして存在感を出す */
+    color: #444 !important;    /* 薄いグレーから「濃いグレー」へ変更 */
+    letter-spacing: 0.05em !important;
+    margin-bottom: 12px !important;
+}
+
+/* 2. 入力欄の文字と入力中の文字 */
+.input-minimal {
+    color: #000 !important;    /* 入力した文字は「真っ黒」に */
+    font-weight: 500 !important;
+    font-size: 16px !important; /* 標準的な読みやすさへ */
+}
+
+/* 3. プレースホルダー（例：ITパスポート...） */
+.input-minimal::placeholder {
+    color: #aaa !important;    /* 以前より一段階濃くして「読める」レベルに */
+    font-weight: 400;
+}
+
+/* 4. セレクトボックス内の文字（単語入力 など） */
+select.input-minimal {
+    color: #000 !important;
+    font-weight: 600 !important;
+}
+
+/* 5. 「間違いの選択肢」エリアの案内文 */
+#choicesInputArea p {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #666 !important; /* 薄すぎた色を濃く修正 */
+}
+
+/* 6. チェックボックス横の「公開設定にする」 */
+label[style*="cursor: pointer"] {
+    color: #222 !important;
+    font-weight: 600 !important;
+}

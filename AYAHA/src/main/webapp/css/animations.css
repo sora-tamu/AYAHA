@@ -1,0 +1,31 @@
+/* --- 共通：SVGの基本スタイル --- */
+.logoutButton svg, .button.delete-animated svg {
+    display: block;
+    position: absolute;
+}
+
+/* --- ログアウトボタン：干渉を防ぐための調整 --- */
+.logoutButton {
+  /* 変数はそのまま維持 */
+  --figure-duration: 100ms;
+  /* ...（中略）... */
+  
+  background: none;
+  border: 0;
+  color: #f4f7ff;
+  cursor: pointer;
+  display: block; /* inline-flexから修正 */
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  height: 40px;
+  outline: none;
+  padding: 0 0 0 20px;
+  perspective: 100px;
+  position: relative;
+  text-align: left;
+  width: 130px;
+  margin: 0 auto; /* 中央に配置したい場合 */
+}
+
+/* 以下の body や html への指定は削除してください */
+/* body { display: flex; justify-content: center; ... } <- これが原因です */
