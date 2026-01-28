@@ -1,15 +1,15 @@
-# Tomcat 10 (Java 17)
+# 1. 土台の用意
 FROM tomcat:10.1-jdk17-temurin-jammy
 
-# 初期アプリを削除
+# 2. 初期ファイルを消す
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# 階層を一段上げた前提の設定
-# プロジェクト直下に src があるならこれでOK
+# 3. 画面ファイルをコピー
+# もしエラーが出る場合は ./src/main/webapp を ./WebContent に変えてみてください
 COPY ./src/main/webapp /usr/local/tomcat/webapps/ROOT
 
-# コンパイル済みのクラスファイルをコピー
-# ※GitHub上に build/classes フォルダが存在することを確認してください
+# 4. Javaのクラスファイルをコピー
+# Eclipseが作ったクラスファイルをTomcatの指定場所に置く
 COPY ./build/classes /usr/local/tomcat/webapps/ROOT/WEB-INF/classes
 
 EXPOSE 8080
